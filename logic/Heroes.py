@@ -1,3 +1,6 @@
+from logic.ItemsLab import ItemsLab
+
+
 class Heroes:
     """ define interaction betwen mcgyver and items on the gride and
     the condition to the end of the game  """
@@ -7,30 +10,41 @@ class Heroes:
         self.inventory = [0,0,0]
 
     def motion_up(self,path):
-        test = [self.loc[0] + 100]
+        val = self.loc.pop(0)  # recup la valeur loc
+        test = val + 100  # test la valeur pop
         if test in path:
-            self.loc = list(test)
+            self.loc.append(test)
         else:
-            pass
+            self.loc.append(val)
+
     def motion_down(self, path):
-        test = [self.loc[0] - 100]
+        val = self.loc.pop(0)  # recup la valeur loc
+        test = val - 100  # test la valeur pop
         if test in path:
-            self.loc = list(test)
+            self.loc.append(test)
         else:
-            pass
+            self.loc.append(val)
 
     def motion_right(self, path):
-        test = [self.loc[0] + 1]
+        val = self.loc.pop(0)  # recup la valeur loc
+        test = val + 1  # test la valeur pop
         if test in path:
-            self.loc = list(test)
+            self.loc.append(test)
         else:
-            pass
+            self.loc.append(val)
+
     def motion_left(self, path):
-        test = [self.loc[0] - 1]
+        val = self.loc.pop(0) #recup la valeur loc
+        test = val -1 #test la valeur pop
         if test in path:
-            self.loc = list(test)
-        else:
-            pass
+            self.loc.append(test)
+        else :
+            self.loc.append(val)
+
+
+        # renvoie la valeur pop
+
+
 
     def inmotion(self,path, where):
         """ define movement to the hero on the path only """
@@ -80,3 +94,10 @@ class Heroes:
             pass
 
 
+labyrinth = ItemsLab() # new game with walls and spaces
+perso = Heroes() # new heroe in labyrinth, at start point
+labyrinth.randomstuff() # add 3 objects in a random location on labyrinth
+
+print("voici la position du hero :", perso.loc)
+perso.motion_left(labyrinth.path)
+print("voici la position du hero :", perso.loc)
