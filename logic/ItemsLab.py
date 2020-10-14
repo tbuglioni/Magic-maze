@@ -22,9 +22,9 @@ class ItemsLab:
             ]
         self.gard = [1314]
         self.stuff = []
-        self.stuff1 = 0
-        self.stuff2 = 0
-        self.stuff3 = 0
+        self.stuff1 = []
+        self.stuff2 = []
+        self.stuff3 = []
         
         
     def randomstuff(self):
@@ -32,9 +32,9 @@ class ItemsLab:
         freelocation = [102, 107, 114, 607, 614, 703, 814, 1302, 1307]
         random.shuffle(freelocation)
         self.stuff = freelocation[:3]
-        self.stuff1 = freelocation[0]
-        self.stuff2 = freelocation[1]
-        self.stuff3 = freelocation[2]
+        self.stuff1.append(freelocation[0])
+        self.stuff2.append(freelocation[1])
+        self.stuff3.append(freelocation[2])
     
     def errase_stuff(self, nb):
         """ check if the hero si on the same location of a stuff,
