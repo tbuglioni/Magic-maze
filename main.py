@@ -99,7 +99,7 @@ def draw_on_lab(list1, list2, objet, x=0, y=672):
 
 # -----------------------------------------------------------------------
 # -----------------------------------------------------------------------
-black_color = (0, 0, 0)
+
 
 # loop zone :
 my_game = True
@@ -116,7 +116,8 @@ while my_game:
                 perso.motion_right(labyrinth.path)
             elif event.key == pygame.K_LEFT:
                 perso.motion_left(labyrinth.path)
-    labyrinth.errase_stuff(perso.loc)
+    analyse_case = labyrinth.errase_stuff(perso.loc)
+    perso.getstuff(analyse_case)
     draw_on_lab(structure, labyrinth.path, floor)
     draw_on_lab(structure, wall_stone, bloc)
     draw_on_lab(structure, labyrinth.gard, gard)
@@ -124,6 +125,17 @@ while my_game:
     draw_on_lab(structure, labyrinth.stuff2, ether)
     draw_on_lab(structure, labyrinth.stuff3, tube_plastique)
     draw_on_lab(structure, perso.loc, mcgyver)
+
+    if (perso.loc == [1214]) and (perso.inventory == [1,1,1]):
+        print("you win, congratulation :)") #ending location with invent : full
+        print(perso.inventory)
+        my_game = False # GOOD ending
+    elif (perso.loc == [1214]) and (perso.inventory != [1,1,1]):
+        print("you lose, :/ :)") #ending location with invent : not full
+        print(perso.inventory)
+        my_game = False # BAD ending
+    else:
+        pass # it's note the ending location, the game continue
 
     pygame.display.flip()
 

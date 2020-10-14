@@ -29,7 +29,7 @@ class ItemsLab:
         
     def randomstuff(self):
         """ put on the path 3 stuffs in random location """
-        freelocation = [102, 107, 114, 607, 614, 703, 814, 1302, 1307]
+        freelocation = list(self.path)
         random.shuffle(freelocation)
         self.stuff = freelocation[:3]
         self.stuff1.append(freelocation[0])
@@ -39,13 +39,13 @@ class ItemsLab:
     def errase_stuff(self, nb):
         """ check if the hero si on the same location of a stuff,
         and errase it, on the map """
-        if nb == self.stuff1 :
+        if nb == self.stuff1:
             self.stuff1 = [0]
             return 1
-        elif nb == self.stuff2 :
+        elif nb == self.stuff2:
             self.stuff2 = [0]
             return 2
-        elif nb == self.stuff3 :
+        elif nb == self.stuff3:
             self.stuff3 = [0]
             return 3
         else:

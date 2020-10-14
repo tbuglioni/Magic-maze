@@ -10,78 +10,38 @@ class Heroes:
         self.inventory = [0,0,0]
 
     def motion_up(self,path):
-        val = self.loc.pop(0)  # recup la valeur loc
-        test = val + 100  # test la valeur pop
+        val = self.loc.pop(0)
+        test = val + 100
         if test in path:
             self.loc.append(test)
         else:
             self.loc.append(val)
 
     def motion_down(self, path):
-        val = self.loc.pop(0)  # recup la valeur loc
-        test = val - 100  # test la valeur pop
+        val = self.loc.pop(0)
+        test = val - 100
         if test in path:
             self.loc.append(test)
         else:
             self.loc.append(val)
 
     def motion_right(self, path):
-        val = self.loc.pop(0)  # recup la valeur loc
-        test = val + 1  # test la valeur pop
+        val = self.loc.pop(0)
+        test = val + 1
         if test in path:
             self.loc.append(test)
         else:
             self.loc.append(val)
 
     def motion_left(self, path):
-        val = self.loc.pop(0) #recup la valeur loc
-        test = val -1 #test la valeur pop
+        val = self.loc.pop(0)
+        test = val -1
         if test in path:
             self.loc.append(test)
         else :
             self.loc.append(val)
 
 
-        # renvoie la valeur pop
-
-
-
-    def inmotion(self,path, where):
-        """ define movement to the hero on the path only """
-        key = where
-        i = [0]
-        if key == "up":
-            i[0] = self.loc[0] + 100
-            if i[0] in path:
-                self.loc = list(i)
-                key = 0
-            else:
-                pass
-        elif key == "down":
-            i[0] = self.loc[0] - 100
-            if i[0] in path:
-                self.loc = list(i)
-                key = 0
-            else:
-                pass
-        elif key == "right":
-            i[0] = self.loc[0] + 1
-            if i[0] in path:
-                self.loc = list(i)
-                key = 0
-            else:
-                pass
-        elif key == "left":
-            i[0] = self.loc[0] - 1
-            if i[0] in path:
-                self.loc = list(i)
-                key = 0
-            else:
-                key = 0
-
-        else:
-            pass
-    
     def getstuff(self,nb):
         """ add given stuff into the inventory """
         if nb == 1:
@@ -89,7 +49,7 @@ class Heroes:
         elif nb == 2:
             self.inventory[1] = 1
         elif nb == 3:
-            self.inventory[1] = 1
+            self.inventory[2] = 1
         else:
             pass
 
