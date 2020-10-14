@@ -116,14 +116,14 @@ while my_game:
                 perso.motion_right(labyrinth.path)
             elif event.key == pygame.K_LEFT:
                 perso.motion_left(labyrinth.path)
-
+    labyrinth.errase_stuff(perso.loc)
     draw_on_lab(structure, labyrinth.path, floor)
     draw_on_lab(structure, wall_stone, bloc)
-    draw_on_lab(structure, perso.loc, mcgyver)
     draw_on_lab(structure, labyrinth.gard, gard)
     draw_on_lab(structure, labyrinth.stuff1, aiguille)
     draw_on_lab(structure, labyrinth.stuff2, ether)
     draw_on_lab(structure, labyrinth.stuff3, tube_plastique)
+    draw_on_lab(structure, perso.loc, mcgyver)
 
     pygame.display.flip()
 

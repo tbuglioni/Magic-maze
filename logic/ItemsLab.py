@@ -40,13 +40,13 @@ class ItemsLab:
         """ check if the hero si on the same location of a stuff,
         and errase it, on the map """
         if nb == self.stuff1 :
-            self.stuff1 = 0
+            self.stuff1 = [0]
             return 1
         elif nb == self.stuff2 :
-            self.stuff2 = 0
+            self.stuff2 = [0]
             return 2
         elif nb == self.stuff3 :
-            self.stuff3 = 0
+            self.stuff3 = [0]
             return 3
         else:
             return 4
