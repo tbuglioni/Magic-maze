@@ -1,6 +1,3 @@
-from logic.ItemsLab import ItemsLab
-
-
 class Heroes:
     """ define interaction betwen mcgyver and items on the gride and
     the condition to the end of the game  """
@@ -52,12 +49,3 @@ class Heroes:
             self.inventory[2] = 1
         else:
             pass
-
-
-labyrinth = ItemsLab() # new game with walls and spaces
-perso = Heroes() # new heroe in labyrinth, at start point
-labyrinth.randomstuff() # add 3 objects in a random location on labyrinth
-
-print("voici la position du hero :", perso.loc)
-perso.motion_left(labyrinth.path)
-print("voici la position du hero :", perso.loc)
