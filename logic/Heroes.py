@@ -3,49 +3,62 @@ class Heroes:
     the condition to the end of the game  """
     
     def __init__(self):
-        self.loc = [414]
-        self.inventory = [0,0,0]
+        self.inventory = [False,False,False]
 
-    def motion_up(self,path):
-        val = self.loc.pop(0)
-        test = val + 100
-        if test in path:
-            self.loc.append(test)
-        else:
-            self.loc.append(val)
+    def motion(self, hero_localisation, path, gard_localisation, exit_localisation, direction):
 
-    def motion_down(self, path):
-        val = self.loc.pop(0)
-        test = val - 100
-        if test in path:
-            self.loc.append(test)
-        else:
-            self.loc.append(val)
+        def choice_direction():
+            if direction == "up":
+                motion_up()
+            elif direction == "down":
+                motion_down()
+            elif direction == "right":
+                motion_right()
+            elif direction == "left":
+                motion_left()
 
-    def motion_right(self, path):
-        val = self.loc.pop(0)
-        test = val + 1
-        if test in path:
-            self.loc.append(test)
-        else:
-            self.loc.append(val)
+        def motion_up():
+            temporary_position = hero_localisation.pop(0)
+            test = temporary_position + 100
+            if test in path or gard_localisation or exit_localisation:
+                hero_localisation.append(test)
+            else:
+                hero_localisation.append(temporary_position)
 
-    def motion_left(self, path):
-        val = self.loc.pop(0)
-        test = val -1
-        if test in path:
-            self.loc.append(test)
-        else :
-            self.loc.append(val)
+        def motion_down():
+            temporary_position = hero_localisation.pop(0)
+            test = temporary_position - 100
+            if test in path or gard_localisation or exit_localisation:
+                hero_localisation.append(test)
+            else:
+                hero_localisation.append(temporary_position)
+
+        def motion_right():
+            temporary_position = hero_localisation.pop(0)
+            test = temporary_position + 1
+            if test in path or gard_localisation or exit_localisation:
+                hero_localisation.append(test)
+            else:
+                hero_localisation.append(temporary_position)
+
+        def motion_left():
+            temporary_position = hero_localisation.pop(0)
+            test = temporary_position -1
+            if test in path or gard_localisation or exit_localisation:
+                hero_localisation.append(test)
+             else :
+                hero_localisation.append(temporary_position)
+
+        choice_direction()
 
 
-    def getstuff(self,nb):
+    def getstuff(self,stuff_errased):
         """ add given stuff into the inventory """
-        if nb == 1:
-            self.inventory[0] = 1
-        elif nb == 2:
-            self.inventory[1] = 1
-        elif nb == 3:
-            self.inventory[2] = 1
+        if stuff_errased == "element 1 is take by hero":
+            self.inventory[0] = True
+        elif stuff_errased == "element 2 is take by hero":
+            self.inventory[1] = True
+        elif stuff_errased == "element 3 is take by hero":
+            self.inventory[2] = True
         else:
             pass
