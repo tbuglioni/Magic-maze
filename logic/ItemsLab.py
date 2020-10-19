@@ -9,9 +9,12 @@ class ItemsLab:
         self.stuff2_localisation = []
         self.stuff3_localisation = []
 
-    def add_random_stuff(self, path, gard_localisation, hero_localisation):
+    def add_random_stuff(self, path, gard_localisation, hero_localisation, exit_localisation):
         """ put on the path 3 stuffs in random location """
         free_localisation = list(path)
+        free_localisation.remove(gard_localisation[0])
+        free_localisation.remove(hero_localisation[0])
+        free_localisation.remove(exit_localisation[0])
         random.shuffle(free_localisation)
 
         self.all_stuff = free_localisation[:3]

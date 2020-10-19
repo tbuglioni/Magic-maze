@@ -8,8 +8,6 @@ class GameLevel:
         self.gard_localisation = []
         self.hero_localisation = []
         self.exit_localisation = []
-        self.ending_column = [15, 115, 215, 315, 415, 515, 615, 715,
-                              815, 915, 1015, 1115, 1215, 1315, 1415]
         self.actual_level = 1
 
     def initialisation_lvl(self, lvl=1):
@@ -99,26 +97,10 @@ class GameLevel:
 
         identify_all_possible_position()
 
-    def ending_game(self,inventory):
-        def kill_gard_or_loose():
-            if (self.hero_localisation == self.gard_localisation) and (inventory == [True, True, True]):
-                self.gard_localisation = [0]
-                return "gard is dead"
-            elif (self.hero_localisation == self.gard_localisation) and (inventory != [True, True, True]):
-                print("you lose, :/")
-                return "loose"
-            else:
-                pass
-
-        def win():
-            if (self.hero_localisation == self.exit_localisation):
-                return "win"
-            else:
-                pass  # it's note the ending location, the game continue
-
-            kill_gard_or_loose()
-            win()
-
     def get_next_lvl(self):
         next_lvl = self.actual_level + 1
+        if next_lvl == 6:
+            next_lvl == 1
+        else:
+            pass
         return next_lvl

@@ -21,18 +21,50 @@ class Game:
         self.show_items.new_window()
         self.show_items.import_items()
         self.show_perso.import_hero()
-        self.labyrinth.add_random_stuff(self.new_game.path, self.new_game.gard_localisation, self.new_game.hero_localisation)
+        self.labyrinth.add_random_stuff(self.new_game.path, self.new_game.gard_localisation,
+                                        self.new_game.hero_localisation, self.new_game.exit_localisation)
 
     def interaction_game(self):
         self.perso.getstuff(self.labyrinth.errase_stuff(self.new_game.hero_localisation))
 
     def check_end(self):
-        if self.new_game.ending_game(self.perso.inventory) == "loose":
-            self.boucle_statut = False
-        elif self.new_game.ending_game(self.perso.inventory) == "win":
-            self.new_game.initialisation_lvl(self.new_game.get_next_lvl())
-        else:
-            pass
+        def kill_gard_or_loose():
+            if (self.new_game.hero_localisation == self.new_game.gard_localisation) and (self.perso.inventory == [True, True, True]):
+                self.new_game.gard_localisation = [0]
+                print("gard is dead")
+            elif (self.new_game.hero_localisation == self.new_game.gard_localisation) and (self.perso.inventory != [True, True, True]):
+                print("you lose, :/")
+                self.boucle_statut = False
+
+            else:
+                pass
+
+        def win():
+            if self.new_game.hero_localisation == self.new_game.exit_localisation:
+                new_lvl = self.new_game.get_next_lvl()
+                print("vous gagnez")
+                self.new_game.all_position = []
+                self.new_game.path = []
+                self.new_game.wall = []
+                self.new_game.gard_localisation = []
+                self.new_game.hero_localisation = []
+                self.new_game.exit_localisation = []
+                self.actual_level = new_lvl
+                self.new_game.initialisation_lvl(new_lvl)
+                self.labyrinth.stuff1_localisation = []
+                self.labyrinth.stuff2_localisation = []
+                self.labyrinth.stuff3_localisation = []
+                self.perso.inventory = [False,False,False]
+                self.labyrinth.add_random_stuff(self.new_game.path, self.new_game.gard_localisation,
+                                                self.new_game.hero_localisation, self.new_game.exit_localisation)
+
+
+            else:
+                pass  # it's note the ending location, the game continue
+
+        kill_gard_or_loose()
+        win()
+
 
     def all_event(self):
         for event in pygame.event.get():
