@@ -39,10 +39,10 @@ class GameLevel:
                 index_number += 85
                 lign += 1
 
-        def assign_element_in_categorie(list):
+        def assign_element_in_categorie(lvl_list):
             position_case = 1
             counter = 1
-            for elt in list:
+            for elt in lvl_list:
                 if elt == "0":
                     self.wall.append(position_case)
                     if counter == 15:
@@ -100,7 +100,7 @@ class GameLevel:
     def get_next_lvl(self):
         next_lvl = self.actual_level + 1
         if next_lvl == 6:
-            next_lvl == 1
+            next_lvl = 1
         else:
             pass
         return next_lvl

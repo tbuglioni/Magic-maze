@@ -5,7 +5,8 @@ class Heroes:
     def __init__(self):
         self.inventory = [False,False,False]
 
-    def motion(self, hero_localisation, path, gard_localisation, exit_localisation, direction):
+    def motion(self, hero_localisation, path, direction):
+        """ """
 
         def choice_direction():
             if direction == "up":

@@ -28,13 +28,29 @@ class Game:
         self.perso.getstuff(self.labyrinth.errase_stuff(self.new_game.hero_localisation))
 
     def check_end(self):
+        def restart_game(game_lvl):
+            self.new_game.all_position = []
+            self.new_game.path = []
+            self.new_game.wall = []
+            self.new_game.gard_localisation = []
+            self.new_game.hero_localisation = []
+            self.new_game.exit_localisation = []
+            self.actual_level = game_lvl
+            self.new_game.initialisation_lvl(game_lvl)
+            self.labyrinth.stuff1_localisation = []
+            self.labyrinth.stuff2_localisation = []
+            self.labyrinth.stuff3_localisation = []
+            self.perso.inventory = [False, False, False]
+            self.labyrinth.add_random_stuff(self.new_game.path, self.new_game.gard_localisation,
+                                            self.new_game.hero_localisation, self.new_game.exit_localisation)
+
         def kill_gard_or_loose():
             if (self.new_game.hero_localisation == self.new_game.gard_localisation) and (self.perso.inventory == [True, True, True]):
                 self.new_game.gard_localisation = [0]
                 print("gard is dead")
             elif (self.new_game.hero_localisation == self.new_game.gard_localisation) and (self.perso.inventory != [True, True, True]):
                 print("you lose, :/")
-                self.boucle_statut = False
+                restart_game(1)
 
             else:
                 pass
@@ -42,25 +58,11 @@ class Game:
         def win():
             if self.new_game.hero_localisation == self.new_game.exit_localisation:
                 new_lvl = self.new_game.get_next_lvl()
-                print("vous gagnez")
-                self.new_game.all_position = []
-                self.new_game.path = []
-                self.new_game.wall = []
-                self.new_game.gard_localisation = []
-                self.new_game.hero_localisation = []
-                self.new_game.exit_localisation = []
-                self.actual_level = new_lvl
-                self.new_game.initialisation_lvl(new_lvl)
-                self.labyrinth.stuff1_localisation = []
-                self.labyrinth.stuff2_localisation = []
-                self.labyrinth.stuff3_localisation = []
-                self.perso.inventory = [False,False,False]
-                self.labyrinth.add_random_stuff(self.new_game.path, self.new_game.gard_localisation,
-                                                self.new_game.hero_localisation, self.new_game.exit_localisation)
-
+                restart_game(new_lvl)
 
             else:
                 pass  # it's note the ending location, the game continue
+
 
         kill_gard_or_loose()
         win()
@@ -72,17 +74,13 @@ class Game:
                 self.boucle_statut = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path,
-                                      self.new_game.gard_localisation, self.new_game.exit_localisation, "up")
+                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path, "up")
                 elif event.key == pygame.K_DOWN:
-                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path,
-                                      self.new_game.gard_localisation, self.new_game.exit_localisation, "down")
+                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path, "down")
                 elif event.key == pygame.K_RIGHT:
-                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path,
-                                      self.new_game.gard_localisation, self.new_game.exit_localisation, "right")
+                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path, "right")
                 elif event.key == pygame.K_LEFT:
-                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path,
-                                      self.new_game.gard_localisation, self.new_game.exit_localisation, "left")
+                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path, "left")
 
     def graph_all(self):
         self.show_items.add_graph(self.new_game.all_position, self.new_game.path, self.show_items.path_graph)
