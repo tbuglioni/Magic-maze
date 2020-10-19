@@ -217,3 +217,36 @@ while my_game:
 
 
 pygame.quit()
+
+
+def assign_element_in_categorie(list):
+    i = 1401
+    for elt in list:
+        if elt == 0:
+            self.wall.append(i)
+            if i in self.ending_column:
+                i -= 114
+            else:
+                i += 1
+        elif elt == 1:
+            self.path.append(i)
+            if i in self.ending_column:
+                i -= 114
+            else:
+                i += 1
+        elif elt == 2:
+            self.hero_localisation.append(i)
+            if i in self.ending_column:
+                i -= 114
+            else:
+                i += 1
+        elif elt == 3:
+            self.gard_localisation.append(i)
+            if i in self.ending_column:
+                i -= 114
+        elif elt == 4:
+            self.exit_localisation.append(i)
+            if i in self.ending_column:
+                i -= 114
+            else:
+                i += 1

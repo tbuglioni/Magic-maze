@@ -19,16 +19,16 @@ class Heroes:
 
         def motion_up():
             temporary_position = hero_localisation.pop(0)
-            test = temporary_position + 100
-            if test in path or gard_localisation or exit_localisation:
+            test = temporary_position - 100
+            if test in path:
                 hero_localisation.append(test)
             else:
                 hero_localisation.append(temporary_position)
 
         def motion_down():
             temporary_position = hero_localisation.pop(0)
-            test = temporary_position - 100
-            if test in path or gard_localisation or exit_localisation:
+            test = temporary_position + 100
+            if test in path:
                 hero_localisation.append(test)
             else:
                 hero_localisation.append(temporary_position)
@@ -36,7 +36,7 @@ class Heroes:
         def motion_right():
             temporary_position = hero_localisation.pop(0)
             test = temporary_position + 1
-            if test in path or gard_localisation or exit_localisation:
+            if test in path:
                 hero_localisation.append(test)
             else:
                 hero_localisation.append(temporary_position)
@@ -44,9 +44,9 @@ class Heroes:
         def motion_left():
             temporary_position = hero_localisation.pop(0)
             test = temporary_position -1
-            if test in path or gard_localisation or exit_localisation:
+            if test in path:
                 hero_localisation.append(test)
-             else :
+            else:
                 hero_localisation.append(temporary_position)
 
         choice_direction()

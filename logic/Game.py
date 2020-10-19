@@ -4,37 +4,35 @@ from logic.Heroes import Heroes
 from logic.GameLevel import GameLevel
 from graphic.HeroesGraph import HeroesGraph
 from graphic.ItemsLabGraph import ItemsLabGraph
-# ----------------------------------------------------------------------
-# new instance:
-new_game = GameLevel() #new instance game
-new_game.initialisation_lvl(1) #initialise list
-new_game.ending_game() #return "gard is dead" "loose" "win"
-new_game.get_next_lvl() #return number
+pygame.init()
 
 
-labyrinth = ItemsLab() # new game with walls and spaces
-perso = Heroes() # new heroe in labyrinth, at start point
-# add 3 objects in a random location on labyrinth
-# ----------------------------------------------------------------------
 class Game:
     def __init__(self):
         self.boucle_statut = True
+        self.new_game = GameLevel()
+        self.perso = Heroes()
+        self.show_perso = HeroesGraph()
+        self.labyrinth = ItemsLab()
+        self.show_items = ItemsLabGraph()
 
-    def new_instance(self):
-        new_game = GameLevel()
-        labyrinth = ItemsLab()
-        perso = Heroes()
-        show_perso = HeroesGraph()
-        show_items = ItemsLabGraph()
+    def init_game(self, lvl):
+        self.new_game.initialisation_lvl(lvl)
+        self.show_items.new_window()
+        self.show_items.import_items()
+        self.show_perso.import_hero()
+        self.labyrinth.add_random_stuff(self.new_game.path, self.new_game.gard_localisation, self.new_game.hero_localisation)
 
-    def check_end(self:):
-        if new_game.ending_game(perso.inventory) == "loose":
+    def interaction_game(self):
+        self.perso.getstuff(self.labyrinth.errase_stuff(self.new_game.hero_localisation))
+
+    def check_end(self):
+        if self.new_game.ending_game(self.perso.inventory) == "loose":
             self.boucle_statut = False
-        elif new_game.ending_game(perso.inventory) == "win":
-            new_game.initialisation_lvl(new_game.get_next_lvl())
-
-
-
+        elif self.new_game.ending_game(self.perso.inventory) == "win":
+            self.new_game.initialisation_lvl(self.new_game.get_next_lvl())
+        else:
+            pass
 
     def all_event(self):
         for event in pygame.event.get():
@@ -42,98 +40,33 @@ class Game:
                 self.boucle_statut = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    perso.motion_up(labyrinth.path)
+                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path,
+                                      self.new_game.gard_localisation, self.new_game.exit_localisation, "up")
                 elif event.key == pygame.K_DOWN:
-                    perso.motion_down(labyrinth.path)
+                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path,
+                                      self.new_game.gard_localisation, self.new_game.exit_localisation, "down")
                 elif event.key == pygame.K_RIGHT:
-                    perso.motion_right(labyrinth.path)
+                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path,
+                                      self.new_game.gard_localisation, self.new_game.exit_localisation, "right")
                 elif event.key == pygame.K_LEFT:
-                    perso.motion_left(labyrinth.path)
+                    self.perso.motion(self.new_game.hero_localisation, self.new_game.path,
+                                      self.new_game.gard_localisation, self.new_game.exit_localisation, "left")
 
+    def graph_all(self):
+        self.show_items.add_graph(self.new_game.all_position, self.new_game.path, self.show_items.path_graph)
+        self.show_items.add_graph(self.new_game.all_position, self.new_game.wall, self.show_items.wall_graph)
+        self.show_items.add_graph(self.new_game.all_position, self.new_game.gard_localisation,
+                                  self.show_items.gard_graph)
+        self.show_items.add_graph(self.new_game.all_position, self.new_game.exit_localisation,
+                                  self.show_items.exit_graph)
+        self.show_items.add_graph(self.new_game.all_position, self.labyrinth.stuff1_localisation,
+                                  self.show_items.stuff1_graph)
+        self.show_items.add_graph(self.new_game.all_position, self.labyrinth.stuff2_localisation,
+                                  self.show_items.stuff2_graph)
+        self.show_items.add_graph(self.new_game.all_position, self.labyrinth.stuff3_localisation,
+                                  self.show_items.stuff3_graph)
+        self.show_items.add_graph(self.new_game.all_position, self.new_game.hero_localisation,
+                                  self.show_perso.hero_graph)
 
-
-
-
-
-# -----------------------------------------------------------------------
-pygame.init()
-
-
-# -----------------------------------------------------------------------
-
-
-# -----------------------------------------------------------------------
-
-# compare 2 list and show image
-def draw_on_lab(list1, list2, objet, x=0, y=0):
-    """ compare list1(all position) with a specific list(with some position),
-    and add picture in the position """
-    counter = 1
-    for elt in list1:
-        if elt in list2:
-            print(elt)
-            windows_surface.blit(objet, (x, y))
-            counter += 1
-            x += 48
-            if counter == 16:
-                counter =1
-                x = 0
-                y += 48
-            else:
-                pass
-        else:
-            counter += 1
-            x += 48
-            if counter == 16:
-                counter = 1
-                x = 0
-                y += 48
-            else:
-                pass
-
-# -----------------------------------------------------------------------
-# -----------------------------------------------------------------------
-
-
-# loop zone :
-my_game = True
-while my_game:
-    for event in pygame.event.get():
-        if  event.type == pygame.QUIT:
-            my_game = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                perso.motion_up(labyrinth.path)
-            elif event.key == pygame.K_DOWN:
-                perso.motion_down(labyrinth.path)
-            elif event.key == pygame.K_RIGHT:
-                perso.motion_right(labyrinth.path)
-            elif event.key == pygame.K_LEFT:
-                perso.motion_left(labyrinth.path)
-    analyse_case = labyrinth.errase_stuff(perso.loc)
-    perso.getstuff(analyse_case)
-    draw_on_lab(structure, labyrinth.path, floor)
-    draw_on_lab(structure, wall_stone, bloc)
-    draw_on_lab(structure, labyrinth.gard, gard)
-    draw_on_lab(structure, labyrinth.stuff1, aiguille)
-    draw_on_lab(structure, labyrinth.stuff2, ether)
-    draw_on_lab(structure, labyrinth.stuff3, tube_plastique)
-    draw_on_lab(structure, perso.loc, mcgyver)
-
-    if (perso.loc == [1214]) and (perso.inventory == [True,True,True]):
-        print("you win, congratulation :)") #ending location with invent : full
-        print(perso.inventory)
-        my_game = False # GOOD ending
-    elif (perso.loc == [1214]) and (perso.inventory != [True,True,True]):
-        print("you lose, :/ :)") #ending location with invent : not full
-        print(perso.inventory)
-        my_game = False # BAD ending
-    else:
-        pass # it's note the ending location, the game continue
-
-    pygame.display.flip()
-
-
-
-
-pygame.quit()
+    def refresh(self):
+        pygame.display.flip()
