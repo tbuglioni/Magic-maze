@@ -97,6 +97,9 @@ class Game:
                                   self.show_items.stuff3_graph)
         self.show_items.add_graph(self.new_game.all_position, self.new_game.hero_localisation,
                                   self.show_perso.hero_graph)
+        self.show_perso.built_inventory(self.show_items.surface_game, self.perso.inventory)
+
+
 
     def refresh(self):
         pygame.display.flip()
