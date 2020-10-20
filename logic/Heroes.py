@@ -3,12 +3,13 @@ class Heroes:
     the condition to the end of the game  """
     
     def __init__(self):
-        self.inventory = [False,False,False]
+        self.inventory = [False, False, False]
 
     def motion(self, hero_localisation, path, direction):
-        """ """
+        """ define how to move """
 
         def choice_direction():
+            """ choice where to move """
             if direction == "up":
                 motion_up()
             elif direction == "down":
@@ -19,6 +20,7 @@ class Heroes:
                 motion_left()
 
         def motion_up():
+            """ move up to hero """
             temporary_position = hero_localisation.pop(0)
             test = temporary_position - 100
             if test in path:
@@ -27,6 +29,7 @@ class Heroes:
                 hero_localisation.append(temporary_position)
 
         def motion_down():
+            """ move down to hero """
             temporary_position = hero_localisation.pop(0)
             test = temporary_position + 100
             if test in path:
@@ -35,6 +38,7 @@ class Heroes:
                 hero_localisation.append(temporary_position)
 
         def motion_right():
+            """ move right to hero """
             temporary_position = hero_localisation.pop(0)
             test = temporary_position + 1
             if test in path:
@@ -43,8 +47,9 @@ class Heroes:
                 hero_localisation.append(temporary_position)
 
         def motion_left():
+            """ move left to hero """
             temporary_position = hero_localisation.pop(0)
-            test = temporary_position -1
+            test = temporary_position - 1
             if test in path:
                 hero_localisation.append(test)
             else:
@@ -52,8 +57,7 @@ class Heroes:
 
         choice_direction()
 
-
-    def getstuff(self,stuff_errased):
+    def getstuff(self, stuff_errased):
         """ add given stuff into the inventory """
         if stuff_errased == "element 1 is take by hero":
             self.inventory[0] = True

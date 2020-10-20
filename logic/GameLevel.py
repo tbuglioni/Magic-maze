@@ -13,21 +13,22 @@ class GameLevel:
     def initialisation_lvl(self, lvl=1):
         """ import from file the lvl, analyse it, add all elements in categories """
         def importation_level():
+            """ import the lvl as file.txt """
             with open("level/level{}.txt".format(lvl), "r") as level_choice:
                 text = level_choice.read()
             self.actual_level = int(lvl)
             return text
 
         def analyse_level(text):
+            """ analyse elements in the imported file"""
             element_as_list = []
             for elt in text:
                 if elt in "0123456":
                     element_as_list.append(elt)
-            print(element_as_list)
-            print("analyse len", len(element_as_list))
             return element_as_list
 
         def identify_all_possible_position():
+            """ identification of all position of the game and add all in a list"""
             lign = 1
             index_number = 1
             while lign < 16:  # add 1 new lign after 15 columns
@@ -40,6 +41,9 @@ class GameLevel:
                 lign += 1
 
         def assign_element_in_categorie(lvl_list):
+            """ add element in his own list : 0=wall, 1=path, 2=hero, 3=gard, 4=exit
+            each items as a specified number for his localisation in space
+            column +1 (left to right); lign +100 (up to down) from 01 to 1415"""
             position_case = 1
             counter = 1
             for elt in lvl_list:
@@ -98,6 +102,7 @@ class GameLevel:
         identify_all_possible_position()
 
     def get_next_lvl(self):
+        """ get the actual lvl and return the next one """
         next_lvl = self.actual_level + 1
         if next_lvl == 6:
             next_lvl = 1
