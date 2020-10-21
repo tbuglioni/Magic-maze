@@ -24,7 +24,7 @@ class ItemsLab:
     
     def errase_stuff(self, hero_localisation):
         """ check if the hero si on the same location of a stuff,
-        and errase it, on the map """
+        and erase it, on the map """
         if hero_localisation == self.stuff1_localisation:
             self.stuff1_localisation = [0]
             return "element 1 is take by hero"
