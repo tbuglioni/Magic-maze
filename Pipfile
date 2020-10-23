@@ -9,6 +9,7 @@ flake8 = "*"
 item = "*"
 black = "*"
 autopep8 = "*"
+cx-freeze = "*"
 
 [dev-packages]
 

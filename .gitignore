@@ -9,3 +9,4 @@ logic/__pycache__/GameLevel.cpython-38.pyc
 logic/__pycache__/Heroes.cpython-38.pyc
 logic/__pycache__/ItemsLab.cpython-38.pyc
 *.pyc
+*.pyc
