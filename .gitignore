@@ -1,12 +1,5 @@
-
-sandbox/
 Pipfile
 idea/
-graphic/__pycache__/HeroesGraph.cpython-38.pyc
-graphic/__pycache__/ItemsLabGraph.cpython-38.pyc
-logic/__pycache__/Game.cpython-38.pyc
-logic/__pycache__/GameLevel.cpython-38.pyc
-logic/__pycache__/Heroes.cpython-38.pyc
-logic/__pycache__/ItemsLab.cpython-38.pyc
-*.pyc
+graphic/__pycache__/
+logic/__pycache__/
 *.pyc
