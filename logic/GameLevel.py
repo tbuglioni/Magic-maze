@@ -13,7 +13,7 @@ class GameLevel:
 
     def _importation_level(self, lvl):
         """ import the lvl as file.txt """
-        with open("level/level{}.txt".format(lvl), "r") as level_choice:
+        with open("./level/level{}.txt".format(lvl), "r") as level_choice:
             text = level_choice.read()
         self.actual_level = int(lvl)
         return text

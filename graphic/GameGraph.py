@@ -14,14 +14,14 @@ class GameGraph:
 
     def _import_win(self):
         """ import win picture """
-        win_image = pygame.image.load("image/win.png")
+        win_image = pygame.image.load("./image/win.png")
         win_image = pygame.transform.scale(win_image, (720, 720))
         win_image.convert()
         self.win_graph = win_image
 
     def _import_loose(self):
         """ import loose picture """
-        loose_image = pygame.image.load("image/loose.png")
+        loose_image = pygame.image.load("./image/loose.png")
         loose_image = pygame.transform.scale(loose_image, (720, 720))
         loose_image.convert()
         self.loose_graph = loose_image

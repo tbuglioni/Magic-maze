@@ -15,28 +15,28 @@ class HeroesGraph:
 
     def _import_avatar(self):
         """ import hero picture """
-        avatar = pygame.image.load("image/MacGyver.png")
+        avatar = pygame.image.load("./image/MacGyver.png")
         avatar = pygame.transform.scale(avatar, (48, 48))
         avatar.convert_alpha()
         self.hero_graph = avatar
 
     def _import_stuff1_inv(self):
         """ import stuff1 picture """
-        needle = pygame.image.load("image/aiguille.png")
+        needle = pygame.image.load("./image/aiguille.png")
         needle = pygame.transform.scale(needle, (30, 30))
         needle.convert_alpha()
         self.stuff1_graph = needle
 
     def _import_stuff2_inv(self):
         """ import stuff2 picture """
-        ether = pygame.image.load("image/ether.png")
+        ether = pygame.image.load("./image/ether.png")
         ether = pygame.transform.scale(ether, (30, 30))
         ether.convert_alpha()
         self.stuff2_graph = ether
 
     def _import_stuff3_inv(self):
         """ import stuff3 picture """
-        pipe = pygame.image.load("image/tube_plastique.png")
+        pipe = pygame.image.load("./image/tube_plastique.png")
         pipe = pygame.transform.scale(pipe, (30, 30))
         pipe.convert_alpha()
         self.stuff3_graph = pipe

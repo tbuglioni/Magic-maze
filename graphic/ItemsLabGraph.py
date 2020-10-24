@@ -46,28 +46,28 @@ class ItemsLabGraph:
 
     def _import_stuff1(self):
         """ import stuff1 picture """
-        needle = pygame.image.load("image/aiguille.png")
+        needle = pygame.image.load("./image/aiguille.png")
         needle = pygame.transform.scale(needle, (48, 48))
         needle.convert_alpha()
         self.stuff1_graph = needle
 
     def _import_stuff2(self):
         """ import stuff2 picture """
-        ether = pygame.image.load("image/ether.png")
+        ether = pygame.image.load("./image/ether.png")
         ether = pygame.transform.scale(ether, (48, 48))
         ether.convert_alpha()
         self.stuff2_graph = ether
 
     def _import_stuff3(self):
         """ import stuff3 picture """
-        pipe = pygame.image.load("image/tube_plastique.png")
+        pipe = pygame.image.load("./image/tube_plastique.png")
         pipe = pygame.transform.scale(pipe, (48, 48))
         pipe.convert_alpha()
         self.stuff3_graph = pipe
 
     def _import_exit_localisation(self):
         """ import exit picture """
-        exit_location = pygame.image.load("image/downstairs.png")
+        exit_location = pygame.image.load("./image/downstairs.png")
         exit_location = pygame.transform.scale(exit_location, (48, 48))
         exit_location.convert()
         self.exit_graph = exit_location
